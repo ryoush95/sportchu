@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:weather_scedule/screen/Alarms.dart';
 import 'package:weather_scedule/screen/Loading.dart';
 
 void main() {
@@ -14,7 +15,9 @@ class MyApp extends StatelessWidget {
     String scity = '';
     return GetMaterialApp(
       title: 'weatherapp',
-      home: Loading(scity),
+      // home: Loading(scity),
+      home: Alarm(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

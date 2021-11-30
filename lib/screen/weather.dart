@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:weather_scedule/screen/search2.dart';
 import 'package:timer_builder/timer_builder.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:weather_scedule/data/model.dart';
+import 'package:weather_scedule/screen/search2.dart';
+
+import 'Alarms.dart';
 
 class weather extends StatefulWidget {
   weather(this.parseWeatherData, this.parseAir); //데이터 받아오는 코드
@@ -20,6 +22,7 @@ class _weatherState extends State<weather> {
   String? cityname;
   int? temp;
   Widget? icon;
+  Color? background;
   String? des;
   Widget? aqi;
   Widget? aircondition;
@@ -44,7 +47,9 @@ class _weatherState extends State<weather> {
     int condition = weatherData['weather'][0]['id'];
     dust1 = airdata['list'][0]['components']['pm10'].toDouble();
     dust2 = airdata['list'][0]['components']['pm2_5'].toDouble();
+    print(condition);
     icon = model.getWeathericon(condition);
+    background = model.getWeatherbackground(condition);
     des = weatherData['weather'][0]['description'];
     aqi = model.getAirIcon(index);
     aircondition = model.getAirCondition(index);
@@ -65,8 +70,9 @@ class _weatherState extends State<weather> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
+            Get.to(Alarm());
           },
-          icon: Icon(Icons.near_me),
+          icon: Icon(Icons.alarm),
         ),
         actions: [
           IconButton(
@@ -79,7 +85,7 @@ class _weatherState extends State<weather> {
         ],
       ),
       body: Container(
-        color: Colors.orange,
+        color: background!,
         child: Stack(
           children: [
             Container(
@@ -115,7 +121,7 @@ class _weatherState extends State<weather> {
                                 TimerBuilder.periodic(
                                   Duration(minutes: 1),
                                   builder: (context) {
-                                    print('${getSystemTime()}');
+                                    // print('${getSystemTime()}');
                                     return Text(
                                       '${getSystemTime()}',
                                       style:

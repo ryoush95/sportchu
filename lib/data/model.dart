@@ -27,6 +27,20 @@ class Model {
     }
   }
 
+  Color? getWeatherbackground(int? condition) {
+    if (condition! < 300) {
+      return Colors.teal;
+    } else if (condition < 600) {
+      return Color(0xFF80A0FF);
+    } else if (condition == 800) {
+      return Colors.blue;
+    } else if (condition <= 804) {
+      return Colors.grey;
+    }
+  }
+
+
+
   Widget? getAirIcon(int? index) {
     if (index! == 1) {
       return Image.asset(
