@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather_scedule/screen/Alarms.dart';
+import 'package:weather_scedule/screen/BottomNavi.dart';
 import 'package:weather_scedule/screen/Loading.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'weatherapp',
       // home: Loading(scity),
-      home: Alarm(),
+      home: Bottomnavigation(),
       debugShowCheckedModeBanner: false,
     );
   }

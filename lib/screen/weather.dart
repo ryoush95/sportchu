@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:weather_scedule/data/model.dart';
-import 'package:weather_scedule/screen/search2.dart';
+import 'package:weather_scedule/screen/search.dart';
 
 import 'Alarms.dart';
 

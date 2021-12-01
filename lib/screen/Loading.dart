@@ -58,7 +58,7 @@ class _LoadingState extends State<Loading> {
     print(weatherData);
     var airdata = await network.airdata();
     print(airdata);
-    Get.off(weather(weatherData, airdata));
+    Get.to(weather(weatherData, airdata));
   }
 
   @override

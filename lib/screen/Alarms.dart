@@ -14,6 +14,7 @@ class _AlarmState extends State<Alarm> {
   bool sw = false;
   List<String> _list = [];
   TimeOfDay? seltime;
+  ScrollController _controller = ScrollController();
 
   @override
   void initState() {
@@ -26,9 +27,16 @@ class _AlarmState extends State<Alarm> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var listview = ListView.separated(
       padding: EdgeInsets.all(10),
+      controller: _controller,
       itemBuilder: (BuildContext context, int index) {
         return Container(
           child: Row(
@@ -77,6 +85,10 @@ class _AlarmState extends State<Alarm> {
                 print('confirm $date');
                 setState(() {
                   _list.add(DateFormat('yyyy-MM-dd hh:mm a').format(date));
+                  if (_controller.hasClients) {
+                    final position = _controller.position.maxScrollExtent;
+                    _controller.jumpTo(position+70);
+                  }
                 });
               }, currentTime: DateTime.now(), locale: LocaleType.ko);
             },
