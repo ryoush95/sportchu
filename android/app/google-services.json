@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "134235610715",
+    "project_id": "sportchu-5e656",
+    "storage_bucket": "sportchu-5e656.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134235610715:android:00eb8d2b93a5393e2c297e",
+        "android_client_info": {
+          "package_name": "com.sogeum.sportchu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134235610715-625m1351jnuua1hcmit72g3vv1ujtv04.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sogeum.sportchu",
+            "certificate_hash": "24eca107fee46f35e07259c0505fc82c673b1b3a"
+          }
+        },
+        {
+          "client_id": "134235610715-3a01vjfeumg34rgp2v6dvvfbslij4jb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnRywevEsFHRyL3DDaL9ymn2TxEbHOI3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134235610715-3a01vjfeumg34rgp2v6dvvfbslij4jb2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

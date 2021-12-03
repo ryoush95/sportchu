@@ -1,4 +1,4 @@
-# weather_scedule
+# sportchu
 
 A new Flutter project.
 

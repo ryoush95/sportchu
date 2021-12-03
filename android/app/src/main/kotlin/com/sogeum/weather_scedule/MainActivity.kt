@@ -1,4 +1,4 @@
-package com.sogeum.weather_scedule
+package com.sogeum.sportchu
 
 import io.flutter.embedding.android.FlutterActivity
 

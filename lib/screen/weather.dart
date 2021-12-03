@@ -3,8 +3,8 @@ import 'package:timer_builder/timer_builder.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:weather_scedule/data/model.dart';
-import 'package:weather_scedule/screen/search.dart';
+import 'package:sportchu/data/model.dart';
+import 'package:sportchu/screen/search.dart';
 
 import 'Alarms.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:weather_scedule/data/mylocation.dart';
-import 'package:weather_scedule/data/network.dart';
-import 'package:weather_scedule/screen/weather.dart';
+import 'package:sportchu/data/mylocation.dart';
+import 'package:sportchu/data/network.dart';
+import 'package:sportchu/screen/weather.dart';
 import 'package:get/get.dart';
 import 'package:loading_animations/loading_animations.dart';
 

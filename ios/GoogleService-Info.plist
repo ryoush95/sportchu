@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>134235610715-e60u30j6edkmllmj5oovedpu6pk4fca0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.134235610715-e60u30j6edkmllmj5oovedpu6pk4fca0</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>134235610715-625m1351jnuua1hcmit72g3vv1ujtv04.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAXWKjLIfD5q-Qt5xq5I6TqshPhlmwtckk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>134235610715</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.sogeum.sportchu</string>
+	<key>PROJECT_ID</key>
+	<string>sportchu-5e656</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sportchu-5e656.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:134235610715:ios:a1cde8bd08a9276d2c297e</string>
+</dict>
+</plist>
