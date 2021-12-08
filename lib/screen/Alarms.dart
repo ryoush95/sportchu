@@ -39,20 +39,25 @@ class _AlarmState extends State<Alarm> {
       controller: _controller,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(_list[index], style: GoogleFonts.lato(color: Colors.white)),
-              IconButton(
-                onPressed: () {
-                  setState(() {
-                    _list.removeAt(index);
-                    print(index);
-                  });
-                },
-                icon: Icon(Icons.delete, color: Colors.white),
-              ),
-            ],
+          child: GestureDetector(
+            onTap: (){
+              print(_list[index]);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(_list[index], style: GoogleFonts.lato(color: Colors.white)),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _list.removeAt(index);
+                      print(index);
+                    });
+                  },
+                  icon: Icon(Icons.delete, color: Colors.white),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -101,9 +106,6 @@ class _AlarmState extends State<Alarm> {
           child: Center(
             child: Column(
               children: [
-                SizedBox(
-                  height: 50,
-                ),
                 Text(
                   '알람',
                   style: GoogleFonts.lato(color: Colors.white, fontSize: 50),
@@ -111,6 +113,9 @@ class _AlarmState extends State<Alarm> {
                 Text(
                   '3일전에 알람이 울립니다.',
                   style: GoogleFonts.lato(color: Colors.white),
+                ),
+                SizedBox(
+                  height: 40,
                 ),
                 Expanded(child: listview),
               ],
