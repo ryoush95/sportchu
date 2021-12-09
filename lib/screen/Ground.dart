@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
@@ -69,7 +70,12 @@ class _groundState extends State<ground> {
         break;
     }
     firelist.clear();
-    await firestore.doc(docs).collection('ground').orderBy('name').snapshots().listen((event) {
+    await firestore
+        .doc(docs)
+        .collection('ground')
+        .orderBy('name')
+        .snapshots()
+        .listen((event) {
       event.docs.forEach((element) {
         print(element['name']);
         firelist.add(element['name']);
@@ -98,9 +104,14 @@ class _groundState extends State<ground> {
           icon: Icon(Icons.menu),
         ),
         actions: [
-          IconButton(onPressed: (){
-            Get.to(login());
-          }, icon: Icon(Icons.perm_identity,size: 30,)),
+          IconButton(
+              onPressed: () {
+                Get.to(login());
+              },
+              icon: Icon(
+                Icons.perm_identity,
+                size: 30,
+              )),
         ],
       ),
       body: SafeArea(
@@ -184,7 +195,7 @@ class _groundState extends State<ground> {
                               onTap: () {
                                 setState(() {
                                   Get.to(GroundDetail(),
-                                      arguments: [firelist[index],docs]);
+                                      arguments: [firelist[index], docs]);
                                 });
                               },
                               child: Column(
