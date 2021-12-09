@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'package:sportchu/screen/Grounddetail.dart';
 
+import 'login.dart';
+
 class ground extends StatefulWidget {
   const ground({Key? key}) : super(key: key);
 
@@ -73,7 +75,6 @@ class _groundState extends State<ground> {
         firelist.add(element['name']);
       });
     });
-
   }
 
   @override
@@ -96,6 +97,11 @@ class _groundState extends State<ground> {
           onPressed: () {},
           icon: Icon(Icons.menu),
         ),
+        actions: [
+          IconButton(onPressed: (){
+            Get.to(login());
+          }, icon: Icon(Icons.perm_identity,size: 30,)),
+        ],
       ),
       body: SafeArea(
         child: Center(

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sportchu/screen/DateAdd.dart';
@@ -14,6 +15,7 @@ class _GroundDetailState extends State<GroundDetail> {
   List<dynamic> arg = Get.arguments;
   String gid = Get.arguments[0];
   String cate = Get.arguments[1];
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class _GroundDetailState extends State<GroundDetail> {
               Text('inout:$cate'),
               ElevatedButton(
                 onPressed: () {
-                  Get.to(yeyak());
+                  Get.to(yeyak(),arguments:[gid,cate]);
                 },
                 child: Text('예약하기'),
               ),
@@ -37,6 +39,7 @@ class _GroundDetailState extends State<GroundDetail> {
                 },
                 child: Text('++'),
               ),
+              Text(uid),
             ],
           ),
         ));

@@ -1,4 +1,5 @@
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -13,6 +14,8 @@ class dateAdd extends StatefulWidget {
 
 class _dateAddState extends State<dateAdd> {
   String gid = Get.arguments[0], cate = Get.arguments[1];
+  CollectionReference firestore =
+      FirebaseFirestore.instance.collection('category');
   List<DateTime> _pick = [];
   List<String> tag = [];
   List<String> _time = [
@@ -44,6 +47,7 @@ class _dateAddState extends State<dateAdd> {
         child: Center(
           child: Column(
             children: [
+              Text('$gid,$cate'),
               SfDateRangePicker(
                 selectionMode: DateRangePickerSelectionMode.multiple,
                 onSelectionChanged: _onSelectionChanged,
@@ -73,14 +77,23 @@ class _dateAddState extends State<dateAdd> {
                 ),
                 wrapped: true,
               ),
-
               ElevatedButton(
                 onPressed: () {
                   _list.clear();
-                  for(int i = 0; i < _pick.length; i++) {
-                    for(int j = 0; j < tag.length; j++) {
+                  for (int i = 0; i < _pick.length; i++) {
+                    for (int j = 0; j < tag.length; j++) {
                       String date = DateFormat('yyyy/MM/dd').format(_pick[i]);
                       _list.add('$date ${tag[j]}');
+                      firestore
+                          .doc(cate)
+                          .collection('ground')
+                          .doc(gid)
+                          .collection('time')
+                          .doc('$date ${tag[j]}')
+                          .set({
+                        'time': '$date ${tag[j]}',
+                        'yeyak': '',
+                      });
                     }
                   }
                   print(_list.toString());
