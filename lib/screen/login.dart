@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'Ground.dart';
 import 'gsignup.dart';
 
 class login extends StatefulWidget {
@@ -64,7 +65,7 @@ class _loginState extends State<login> {
       await Get.to(gsignup(), arguments: guser);
       documentSnapshot = await userReference.doc(guser!.id).get();
     }
-    Get.back(result: FirebaseAuth.instance.currentUser);
+    Get.offAll(()=>ground());
     email = guser!.id;
   }
 
