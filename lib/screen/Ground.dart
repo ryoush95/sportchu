@@ -119,22 +119,6 @@ class _groundState extends State<ground> {
           child: Container(
             child: Column(
               children: [
-                // ChipsChoice<int>.single(
-                //   value: tag1,
-                //   onChanged: (val) => setState(() {
-                //     tag1 = val;
-                //   }),
-                //   choiceItems: C2Choice.listFrom<int, String>(
-                //       source: ['실외', '실내'],
-                //       value: (i, v) => i,
-                //       label: (i, v) => v),
-                //   choiceStyle: C2ChoiceStyle(
-                //     color: Colors.red,
-                //     borderRadius: const BorderRadius.all(Radius.circular(5)),
-                //   ),
-                //   wrapped: true, //진실은 여러줄 거짓은 한줄
-                // ),
-
                 ChipsChoice<int>.single(
                   value: tag2,
                   onChanged: (val) => setState(() {
@@ -163,9 +147,10 @@ class _groundState extends State<ground> {
                     onPressed: () async {
                       if (ex != '') {
                         // firestore.doc(ex).set({'name': '$ex'});
-                        fs.collection('category').add({'name': '$ex'});
+                        // fs.collection('category').doc(docs).set({'name': '$ex'});
+                        fs.collection('category').doc(docs).collection('ground').doc(ex).set({'name': '$ex'});
                       }
-                      var doc = await fs.collection('category').doc(ex).get();
+                      var doc = await fs.collection('category').doc(docs).get();
                       print(doc.data());
                     },
                     child: Text('add')),

@@ -19,7 +19,7 @@ class _dateAddState extends State<dateAdd> {
   List<DateTime> _pick = [];
   List<String> tag = [];
   List<String> _time = [
-    '9:00',
+    '09:00',
     '10:00',
     '11:00',
     '12:00',
@@ -52,6 +52,9 @@ class _dateAddState extends State<dateAdd> {
                 selectionMode: DateRangePickerSelectionMode.multiple,
                 onSelectionChanged: _onSelectionChanged,
                 selectionColor: Colors.blueAccent,
+                enablePastDates: false,
+                showNavigationArrow: true,
+                initialSelectedDate: DateTime.now(),
               ),
               ChipsChoice<String>.multiple(
                 value: tag,
@@ -82,17 +85,47 @@ class _dateAddState extends State<dateAdd> {
                   _list.clear();
                   for (int i = 0; i < _pick.length; i++) {
                     for (int j = 0; j < tag.length; j++) {
-                      String date = DateFormat('yyyy/MM/dd').format(_pick[i]);
+                      String year = DateFormat('yyyy').format(_pick[i]);
+                      String month = DateFormat('MM').format(_pick[i]);
+                      String day = DateFormat('dd').format(_pick[i]);
+                      String date = DateFormat('yyyy/MM/dd/').format(_pick[i]);
                       _list.add('$date ${tag[j]}');
                       firestore
                           .doc(cate)
                           .collection('ground')
                           .doc(gid)
-                          .collection('time')
-                          .doc('$date ${tag[j]}')
+                          // .collection('$year/$month/$month/$day/$day')
+                          .collection(year)
+                          .doc(month).set({
+                        'm': '$year/$month',
+                      });
+
+                      firestore
+                          .doc(cate)
+                          .collection('ground')
+                          .doc(gid)
+                          .collection(year)
+                          .doc(month)
+                          .collection(month)
+                          .doc(day).set({
+                        'd': '$year/$month/$day',
+                      });
+
+
+
+                      firestore
+                          .doc(cate)
+                          .collection('ground')
+                          .doc(gid)
+                          .collection(year)
+                          .doc(month)
+                          .collection(month)
+                          .doc(day)
+                          .collection(day)
+                          .doc('${tag[j]}')
                           .set({
                         'time': '$date ${tag[j]}',
-                        'yeyak': '',
+                        'yeyak': "",
                       });
                     }
                   }
