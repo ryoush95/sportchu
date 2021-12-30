@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
-import 'package:http/http.dart';
 
 class yeyak extends StatefulWidget {
   const yeyak({Key? key}) : super(key: key);
