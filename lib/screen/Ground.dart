@@ -77,7 +77,6 @@ class _groundState extends State<ground> {
         .snapshots()
         .listen((event) {
       event.docs.forEach((element) {
-        print(element['name']);
         firelist.add(element['name']);
       });
     });
@@ -88,7 +87,6 @@ class _groundState extends State<ground> {
     // TODO: implement initState
     super.initState();
     getfirelist();
-    print(firelist.length);
   }
 
   @override

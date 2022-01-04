@@ -26,9 +26,9 @@ class _BottomnavigationState extends State<Bottomnavigation> {
         }),
         currentIndex: _selectedIndex,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: '11111'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: '22222'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: '33333'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: '예약하기'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: '알람'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: '날씨'),
         ],
       ),
       body: SafeArea(
