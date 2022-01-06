@@ -6,6 +6,8 @@ import 'package:sportchu/screen/DateAdd.dart';
 import 'package:sportchu/screen/login.dart';
 import 'package:sportchu/screen/yeyak.dart';
 
+import 'test.dart';
+
 class GroundDetail extends StatefulWidget {
   const GroundDetail({Key? key}) : super(key: key);
 

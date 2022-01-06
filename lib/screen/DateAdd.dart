@@ -96,7 +96,8 @@ class _dateAddState extends State<dateAdd> {
                           .doc(gid)
                           // .collection('$year/$month/$month/$day/$day')
                           .collection(year)
-                          .doc(month).set({
+                          .doc(month)
+                          .set({
                         'm': '$year/$month',
                       });
 
@@ -107,11 +108,10 @@ class _dateAddState extends State<dateAdd> {
                           .collection(year)
                           .doc(month)
                           .collection(month)
-                          .doc(day).set({
+                          .doc(day)
+                          .set({
                         'd': '$year/$month/$day',
                       });
-
-
 
                       firestore
                           .doc(cate)
