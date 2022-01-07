@@ -115,7 +115,9 @@ class _yeyakState extends State<yeyak> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('예약하기'),
+      ),
       body: Container(
         child: Column(children: [
           Text(gid),

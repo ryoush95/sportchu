@@ -22,7 +22,7 @@ class _GroundDetailState extends State<GroundDetail> {
   final User? currentUser = FirebaseAuth.instance.currentUser;
   String uid = '';
 
-  void ss() {
+  void account() {
     if (currentUser != null) {
       setState(() {
         uid = currentUser!.uid;
@@ -34,7 +34,7 @@ class _GroundDetailState extends State<GroundDetail> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    ss();
+    account();
   }
 
   @override

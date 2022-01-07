@@ -94,7 +94,7 @@ class _groundState extends State<ground> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '예약하기',
+          '구장정보',
           style: GoogleFonts.lato(),
         ),
         leading: IconButton(
@@ -146,7 +146,12 @@ class _groundState extends State<ground> {
                       if (ex != '') {
                         // firestore.doc(ex).set({'name': '$ex'});
                         // fs.collection('category').doc(docs).set({'name': '$ex'});
-                        fs.collection('category').doc(docs).collection('ground').doc(ex).set({'name': '$ex'});
+                        fs
+                            .collection('category')
+                            .doc(docs)
+                            .collection('ground')
+                            .doc(ex)
+                            .set({'name': '$ex'});
                       }
                       var doc = await fs.collection('category').doc(docs).get();
                       print(doc.data());
@@ -164,7 +169,7 @@ class _groundState extends State<ground> {
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (!snapshot.hasData) {
-                        return Container();
+                        return CircularProgressIndicator();
                       } else {
                         return GridView.builder(
                           padding: const EdgeInsets.all(4),
@@ -173,7 +178,9 @@ class _groundState extends State<ground> {
                               Container(
                             padding: EdgeInsets.all(8),
                             margin: EdgeInsets.all(8),
-                            decoration: BoxDecoration(color: Colors.amber),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(color: Colors.grey)),
                             child: GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -186,8 +193,7 @@ class _groundState extends State<ground> {
                                   FlutterLogo(),
                                   Text(
                                     firelist[index],
-                                    style: GoogleFonts.lato(
-                                        backgroundColor: Colors.yellow),
+                                    style: GoogleFonts.lato(),
                                   ),
                                 ],
                               ),

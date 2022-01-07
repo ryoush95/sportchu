@@ -126,6 +126,7 @@ class _dateAddState extends State<dateAdd> {
                           .set({
                         'time': '$date ${tag[j]}',
                         'yeyak': "",
+                        'phone': "",
                       });
                     }
                   }
