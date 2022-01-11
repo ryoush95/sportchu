@@ -87,7 +87,9 @@ class _yeyakCheckState extends State<yeyakCheck> {
                                 borderSide: BorderSide(color: Colors.amber)),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueAccent))),
+                                    BorderSide(color: Colors.blueAccent)),
+                          errorText: _error
+                        ),
                         keyboardType: TextInputType.phone,
                       ),
                     ],
@@ -106,5 +108,15 @@ class _yeyakCheckState extends State<yeyakCheck> {
             ),
           )),
         ));
+  }
+
+  String? get _error{
+    if(phone.isEmpty){
+      return 'isEmpty';
+    }
+    if (phone.length < 9){
+      return '정확히 입력해주세요';
+    }
+    return null;
   }
 }

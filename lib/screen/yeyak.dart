@@ -159,7 +159,7 @@ class _yeyakState extends State<yeyak> {
                 }
                 return SfDateRangePicker(
                   minDate: DateTime.now().add(const Duration(days: -300)),
-                  maxDate:datetime,
+                  maxDate: datetime,
                   selectionMode: DateRangePickerSelectionMode.single,
                   onSelectionChanged: _onSelectionChanged,
                   view: DateRangePickerView.year,
@@ -189,10 +189,14 @@ class _yeyakState extends State<yeyak> {
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot2) {
                 if (snapshot2.hasError) {
-                  return CircularProgressIndicator();
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
                 if (snapshot2.data == null || snapshot2.data == []) {
-                  return CircularProgressIndicator();
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
                 if (time.length == 0) {
                   return Text('Select Date');
