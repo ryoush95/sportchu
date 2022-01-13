@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'Ground.dart';
+import 'BottomNavi.dart';
 
 class yeyakCheck extends StatefulWidget {
   const yeyakCheck({Key? key}) : super(key: key);
@@ -51,7 +51,19 @@ class _yeyakCheckState extends State<yeyakCheck> {
             'yeyak': uid,
             'phone': phone,
           });
-          Get.offAll(ground());
+
+          FirebaseFirestore.instance
+              .collection('yeyaklist')
+              .doc(uid)
+              .collection(uid)
+              .add({
+            'yeyak': uid,
+            'phone': phone,
+            'date': '$y/$m/$d $t',
+            'cate': cate,
+            'ground': gid
+          });
+          Get.offAll(Bottomnavigation());
         });
   }
 
@@ -88,8 +100,7 @@ class _yeyakCheckState extends State<yeyakCheck> {
                             border: OutlineInputBorder(
                                 borderSide:
                                     BorderSide(color: Colors.blueAccent)),
-                          errorText: _error
-                        ),
+                            errorText: _error),
                         keyboardType: TextInputType.phone,
                       ),
                     ],
@@ -110,11 +121,11 @@ class _yeyakCheckState extends State<yeyakCheck> {
         ));
   }
 
-  String? get _error{
-    if(phone.isEmpty){
+  String? get _error {
+    if (phone.isEmpty) {
       return 'isEmpty';
     }
-    if (phone.length < 9){
+    if (phone.length < 9) {
       return '정확히 입력해주세요';
     }
     return null;

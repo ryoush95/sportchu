@@ -175,19 +175,19 @@ class _groundState extends State<ground> {
                           padding: const EdgeInsets.all(4),
                           itemCount: firelist.length,
                           itemBuilder: (BuildContext context, int index) =>
-                              Container(
-                            padding: EdgeInsets.all(8),
-                            margin: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(color: Colors.grey)),
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  Get.to(GroundDetail(),
-                                      arguments: [firelist[index], docs]);
-                                });
-                              },
+                              GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                Get.to(GroundDetail(),
+                                    arguments: [firelist[index], docs]);
+                              });
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+                              margin: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(color: Colors.grey)),
                               child: Column(
                                 children: [
                                   FlutterLogo(),

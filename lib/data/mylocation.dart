@@ -15,7 +15,7 @@ class Mylocation {
         lon = position.longitude;
 
       } catch (e) {
-        print('internet not connect');
+        print(e);
       }
     } else {
       try {

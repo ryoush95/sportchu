@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'Ground.dart';
-import 'gsignup.dart';
+import 'BottomNavi.dart';
+import '../data/gsignup.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -66,7 +66,7 @@ class _loginState extends State<login> {
       documentSnapshot = await userReference.doc(guser!.id).get();
     }
     // Get.back(result: FirebaseAuth.instance.currentUser);
-    email = guser!.id;
+    email = guser!.email;
   }
 
   Future<UserCredential> signInWithGoogle() async {
@@ -81,7 +81,7 @@ class _loginState extends State<login> {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
-    Get.offAll(ground());
+    Get.offAll(Bottomnavigation());
     // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
@@ -89,7 +89,7 @@ class _loginState extends State<login> {
   void googleSignOut() async {
     await _auth.signOut();
     await googleSignIn.signOut();
-
+    Get.offAll(Bottomnavigation());
     print("User Sign Out");
   }
 

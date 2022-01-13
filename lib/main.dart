@@ -14,10 +14,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String scity = '';
     return GetMaterialApp(
       title: 'weatherapp',
-      // home: Loading(scity),
       home: Bottomnavigation(),
       debugShowCheckedModeBanner: false,
     );

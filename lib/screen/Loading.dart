@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:sportchu/data/mylocation.dart';
 import 'package:sportchu/data/network.dart';
 import 'package:sportchu/screen/weather.dart';
@@ -22,6 +23,7 @@ class _LoadingState extends State<Loading> {
   late double lat2;
   late double lon2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LocationPermission? permission;
 
   initState() {
     super.initState();
@@ -30,6 +32,7 @@ class _LoadingState extends State<Loading> {
 
   void getLocation(String scity) async {
     Mylocation mylocation = Mylocation();
+    permission = await Geolocator.requestPermission();
     await mylocation.getLocation(scity);
     if (mylocation.lat == null && mylocation.lon == null) {
       //스낵바 출력하기
