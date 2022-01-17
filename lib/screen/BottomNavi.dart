@@ -25,12 +25,10 @@ class _BottomnavigationState extends State<Bottomnavigation> {
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseMessaging _fcm = FirebaseMessaging.instance;
-  late NotificationSettings _settings;
-
 
   //notification foreground
   Future<void> init() async {
-    var settings = await _fcm.requestPermission(
+    await _fcm.requestPermission(
       alert: true,
       announcement: false,
       badge: true,
@@ -40,13 +38,13 @@ class _BottomnavigationState extends State<Bottomnavigation> {
       sound: true,
     );
 
-    _settings = settings;
-
-    await _fcm.setForegroundNotificationPresentationOptions(
-      alert: true, // Required to display a heads up notification
-      badge: true,
-      sound: true,
-    );
+    if(Platform.isIOS) {
+      await _fcm.setForegroundNotificationPresentationOptions(
+        alert: true, // Required to display a heads up notification
+        badge: true,
+        sound: true,
+      );
+    }
 
     const AndroidNotificationChannel channel = AndroidNotificationChannel(
       'high_importance_channel', // id
@@ -90,6 +88,10 @@ class _BottomnavigationState extends State<Bottomnavigation> {
     // TODO: implement initState
     super.initState();
     init();
+    // FirebaseMessaging.onMessage.listen((event) {
+    //   print(event.notification!.title);
+    //   print(event.notification!.body);
+    // });
 
   }
 
