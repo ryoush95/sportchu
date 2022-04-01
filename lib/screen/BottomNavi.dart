@@ -5,11 +5,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sportchu/screen/Groundadd.dart';
 import 'package:sportchu/screen/test.dart';
 
 import 'Alarms.dart';
 import 'Ground.dart';
 import 'Loading.dart';
+import 'login.dart';
+import 'noti_setting.dart';
 import 'yeyakHistory.dart';
 
 class Bottomnavigation extends StatefulWidget {
@@ -22,9 +27,26 @@ class Bottomnavigation extends StatefulWidget {
 class _BottomnavigationState extends State<Bottomnavigation> {
   int _selectedIndex = 0;
   DateTime pre_backpress = DateTime.now();
+  String toolbar = "";
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseMessaging _fcm = FirebaseMessaging.instance;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    init();
+    _fcm.getToken().then((value) {
+      print(value);
+    });
+    // FirebaseMessaging.onMessage.listen((event) {
+    //   print(event.notification!.title);
+    //   print(event.notification!.body);
+    // });
+
+  }
+
 
   //notification foreground
   Future<void> init() async {
@@ -83,18 +105,6 @@ class _BottomnavigationState extends State<Bottomnavigation> {
     });
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    init();
-    // FirebaseMessaging.onMessage.listen((event) {
-    //   print(event.notification!.title);
-    //   print(event.notification!.body);
-    // });
-
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -116,12 +126,46 @@ class _BottomnavigationState extends State<Bottomnavigation> {
         }
       },
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            toolbar,
+            style: GoogleFonts.lato(),
+          ),
+          // leading: IconButton(
+          //   onPressed: () {},
+          //   icon: Icon(Icons.menu),
+          // ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Get.to(login());
+              },
+              icon: Icon(
+                Icons.perm_identity,
+                size: 30,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                Get.to(notisetting());
+              },
+              icon: Icon(Icons.alarm),
+            ),
+          ],
+        ),
         backgroundColor: Colors.black26,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           selectedItemColor: Colors.black,
           onTap: (int index) => setState(() {
             _selectedIndex = index;
+            if(index ==0){
+              toolbar = '구장정보';
+            } else if(index == 1){
+              toolbar = '알람';
+            }else {
+              toolbar = '날씨';
+            }
           }),
           currentIndex: _selectedIndex,
           items: [
@@ -129,6 +173,38 @@ class _BottomnavigationState extends State<Bottomnavigation> {
             BottomNavigationBarItem(icon: Icon(Icons.favorite), label: '알람'),
             BottomNavigationBarItem(icon: Icon(Icons.favorite), label: '날씨'),
           ],
+        ),
+        drawer: Drawer(
+          // Add a ListView to the drawer. This ensures the user can scroll
+          // through the options in the drawer if there isn't enough vertical
+          // space to fit everything.
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              const UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                accountEmail: null,
+                accountName: Text('spochu', style: TextStyle(
+                  fontSize: 20,
+                ),),
+              ),
+              ListTile(
+                title: const Text('내 구장등록'),
+                onTap: () {
+                  Get.to(groundadd());
+                },
+              ),
+              ListTile(
+                title: const Text('내 구장조회'),
+                onTap: () {
+                  // Get.to(groundlist());
+                },
+              ),
+            ],
+          ),
         ),
         body: SafeArea(
           child: Container(
@@ -141,7 +217,7 @@ class _BottomnavigationState extends State<Bottomnavigation> {
 
   List widgetoption = [
     ground(),
-    test(),
+    notisetting(),
     Loading(""),
   ];
 }

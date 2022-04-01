@@ -85,76 +85,77 @@ class _notisettingState extends State<notisetting> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-          child: Column(
-            children: [
-              FutureBuilder(
-                future: getToken(),
-                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  if (_token == null) {
-                    return CircularProgressIndicator();
-                  } else
-                    return Container(
-                      child: Text(_token!),
-                    );
-                },
-              ),
-              // Text(_token!),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: topic.length,
-                  itemBuilder: (context, index) => ListTile(
-                    title: Text(topic[index]),
-                    trailing: subscribed.contains(topic[index])
-                        ? ElevatedButton(
-                      onPressed: () async {
-                        await FirebaseMessaging.instance
-                            .unsubscribeFromTopic(topic[index]);
-                        await FirebaseFirestore.instance
-                            .collection('topic')
-                            .doc(_token)
-                            .update({topic[index]: FieldValue.delete()});
-                        setState(() {
-                          subscribed.remove(topic[index]);
-                        });
-                      },
-                      child: Text('no'),
-                    )
-                        : ElevatedButton(
-                      onPressed: () async {
-                        await FirebaseMessaging.instance
-                            .subscribeToTopic(topic[index]);
-                        await FirebaseFirestore.instance
-                            .collection('topic')
-                            .doc(_token)
-                            .update({topic[index]: 'sub'});
-                        setState(() {
-                          subscribed.add(topic[index]);
-                        });
-                      },
-                      child: Text('yes'),
+      body: SafeArea(
+        child: Container(
+            child: Column(
+              children: [
+                FutureBuilder(
+                  future: getToken(),
+                  builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                    if (_token == null) {
+                      return CircularProgressIndicator();
+                    } else
+                      return Container(
+                        child: Text(_token!),
+                      );
+                  },
+                ),
+                // Text(_token!),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: topic.length,
+                    itemBuilder: (context, index) => ListTile(
+                      title: Text(topic[index]),
+                      trailing: subscribed.contains(topic[index])
+                          ? ElevatedButton(
+                        onPressed: () async {
+                          await FirebaseMessaging.instance
+                              .unsubscribeFromTopic(topic[index]);
+                          await FirebaseFirestore.instance
+                              .collection('topic')
+                              .doc(_token)
+                              .update({topic[index]: FieldValue.delete()});
+                          setState(() {
+                            subscribed.remove(topic[index]);
+                          });
+                        },
+                        child: Text('no'),
+                      )
+                          : ElevatedButton(
+                        onPressed: () async {
+                          await FirebaseMessaging.instance
+                              .subscribeToTopic(topic[index]);
+                          await FirebaseFirestore.instance
+                              .collection('topic')
+                              .doc(_token)
+                              .update({topic[index]: 'sub'});
+                          setState(() {
+                            subscribed.add(topic[index]);
+                          });
+                        },
+                        child: Text('yes'),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    sendPushMessage('1', 'title', 'body');
-                  },
-                  child: Text('noti')),
-              ElevatedButton(
-                  onPressed: () {
-                    sendPushMessage('2', 'title', 'body');
-                  },
-                  child: Text('noti')),
-              ElevatedButton(
-                  onPressed: () {
-                    sendPushMessage('3', 'title', 'body');
-                  },
-                  child: Text('noti')),
-            ],
-          )),
+                ElevatedButton(
+                    onPressed: () {
+                      sendPushMessage('1', 'title', 'body');
+                    },
+                    child: Text('noti')),
+                ElevatedButton(
+                    onPressed: () {
+                      sendPushMessage('2', 'title', 'body');
+                    },
+                    child: Text('noti')),
+                ElevatedButton(
+                    onPressed: () {
+                      sendPushMessage('3', 'title', 'body');
+                    },
+                    child: Text('noti')),
+              ],
+            )),
+      ),
     );
   }
 

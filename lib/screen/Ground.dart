@@ -8,6 +8,7 @@ import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'package:sportchu/screen/Grounddetail.dart';
+import 'package:sportchu/screen/noti_setting.dart';
 
 import 'login.dart';
 
@@ -92,26 +93,6 @@ class _groundState extends State<ground> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '구장정보',
-          style: GoogleFonts.lato(),
-        ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Get.to(login());
-              },
-              icon: Icon(
-                Icons.perm_identity,
-                size: 30,
-              )),
-        ],
-      ),
       body: SafeArea(
         child: Center(
           child: Container(
@@ -132,31 +113,31 @@ class _groundState extends State<ground> {
                   wrapped: true, //진실은 여러줄 거짓은 한줄
                 ),
                 // Text(tag1.toString() + Get.width.toString()),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: TextFormField(
-                    style: GoogleFonts.lato(
-                        color: Colors.pinkAccent, fontSize: 16),
-                    onChanged: (value) => ex = value,
-                  ),
-                ),
-
-                ElevatedButton(
-                    onPressed: () async {
-                      if (ex != '') {
-                        // firestore.doc(ex).set({'name': '$ex'});
-                        // fs.collection('category').doc(docs).set({'name': '$ex'});
-                        fs
-                            .collection('category')
-                            .doc(docs)
-                            .collection('ground')
-                            .doc(ex)
-                            .set({'name': '$ex'});
-                      }
-                      var doc = await fs.collection('category').doc(docs).get();
-                      print(doc.data());
-                    },
-                    child: Text('add')),
+                // Padding(
+                //   padding: const EdgeInsets.all(20.0),
+                //   child: TextFormField(
+                //     style: GoogleFonts.lato(
+                //         color: Colors.pinkAccent, fontSize: 16),
+                //     onChanged: (value) => ex = value,
+                //   ),
+                // ),
+                //
+                // ElevatedButton(
+                //     onPressed: () async {
+                //       if (ex != '') {
+                //         // firestore.doc(ex).set({'name': '$ex'});
+                //         // fs.collection('category').doc(docs).set({'name': '$ex'});
+                //         fs
+                //             .collection('category')
+                //             .doc(docs)
+                //             .collection('ground')
+                //             .doc(ex)
+                //             .set({'name': '$ex'});
+                //       }
+                //       var doc = await fs.collection('category').doc(docs).get();
+                //       print(doc.data());
+                //     },
+                //     child: Text('add')),
                 // ElevatedButton(
                 //     onPressed: () async {
                 //       firestore.doc(ex).update({'inout': 1, 'name': '$ex'});
