@@ -2,6 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 
+class GroundModel {
+  String? id;
+  String? address;
+  String? age;
+  String? name;
+
+  GroundModel({
+    required String this.id,
+    required String this.address,
+    required String this.age,
+    required String this.name,
+  });
+}
+
 class Model {
   Widget? getWeathericon(int? condition) {
     if (condition! < 300) {

@@ -23,7 +23,7 @@ class _notisettingState extends State<notisetting> {
   Future<void> saveTokenToDatabase(String token) async {
     // Assume user is logged in for this example
     String? userId = FirebaseAuth.instance.currentUser?.uid;
-    _token = await FirebaseMessaging.instance.getToken();
+    _token = await messaging.getToken();
 
     if (userId != null) {
       await FirebaseFirestore.instance.collection('member').doc(userId).update({

@@ -56,6 +56,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^19.3.57
   flutter_local_notifications: ^9.2.0
 
+  remedi_kopo: ^0.0.1
+
 
 dev_dependencies:
   flutter_test:

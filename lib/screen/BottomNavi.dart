@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sportchu/screen/Groundadd.dart';
+import 'package:sportchu/screen/GroundAdd.dart';
 import 'package:sportchu/screen/test.dart';
 
 import 'Alarms.dart';
@@ -194,7 +194,7 @@ class _BottomnavigationState extends State<Bottomnavigation> {
               ListTile(
                 title: const Text('내 구장등록'),
                 onTap: () {
-                  Get.to(groundadd());
+                  Get.to(GroundAdd());
                 },
               ),
               ListTile(
