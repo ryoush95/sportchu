@@ -8,6 +8,7 @@ class GroundAddController extends GetxController {
   final nameTxc = TextEditingController();
   final addressTxc = TextEditingController();
   final addressDetailTxc = TextEditingController();
+  final phoneTxc = TextEditingController();
   final _auth = FirebaseAuth.instance;
   var selc = '축구장';
   var ageList = [];

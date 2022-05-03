@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class GroundModel {
   String? id;
   String? address;
+  String? addressDetail;
   String? age;
   String? name;
 

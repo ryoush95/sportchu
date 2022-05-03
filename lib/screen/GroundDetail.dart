@@ -21,6 +21,16 @@ class _GroundDetailState extends State<GroundDetail> {
   String cate = Get.arguments[1];
   final User? currentUser = FirebaseAuth.instance.currentUser;
   String uid = '';
+  String name = '', address = '', addressDetail = '', age = '', master = '';
+
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    account();
+  }
 
   void account() {
     if (currentUser != null) {
@@ -30,11 +40,8 @@ class _GroundDetailState extends State<GroundDetail> {
     }
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    account();
+  void init() {
+
   }
 
   @override

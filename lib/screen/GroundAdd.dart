@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:remedi_kopo/remedi_kopo.dart';
 
 import '../controller/GroundAddController.dart';
@@ -14,9 +13,21 @@ class GroundAdd extends StatefulWidget {
 }
 
 class _GroundAddState extends State<GroundAdd> {
+  final c = Get.put(GroundAddController());
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    c.nameTxc.dispose();
+    c.addressTxc.dispose();
+    c.addressDetailTxc.dispose();
+    c.phoneTxc.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final c = Get.put(GroundAddController());
+
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
@@ -108,7 +119,7 @@ class _GroundAddState extends State<GroundAdd> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("적정 연령", style: TextStyle(fontSize: 15, color: Color(0xffcfcfcf))),
+                child: Text("사용 가능 연령", style: TextStyle(fontSize: 15, color: Color(0xffcfcfcf))),
               ),
               Padding(
                   padding: const EdgeInsets.all(8.0),
