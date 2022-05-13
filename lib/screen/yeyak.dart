@@ -52,6 +52,8 @@ class _yeyakState extends State<yeyak> {
       d11 = [],
       d12 = [];
   List<String> time = [];
+  String gname = '';
+  String gcate = '';
 
   DateTime _pick = DateTime.now();
   DateTime datetime = DateTime.parse('2050-12-31');
@@ -59,11 +61,11 @@ class _yeyakState extends State<yeyak> {
   void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
     _pick = args.value;
     setState(() {
-      gettime();
+      getTime();
     });
   }
 
-  Future<List<String>> gettime() async {
+  Future<List<String>> getTime() async {
     time.clear();
     y = _pick.year.toString();
     m = _pick.month.toString();
@@ -99,7 +101,12 @@ class _yeyakState extends State<yeyak> {
     // TODO: implement initState
     super.initState();
     y = _pick.year.toString();
-    firestore
+
+    init();
+  }
+
+  void init() async {
+    await firestore
         .doc(cate)
         .collection('ground')
         .doc(gid)
@@ -110,6 +117,15 @@ class _yeyakState extends State<yeyak> {
         month2.add(element.id);
       });
     });
+
+    await firestore.doc(cate).collection('ground').doc(gid).get().then((value) {
+      var data = value.data()!;
+      setState(() {
+        gname = data['name'];
+        gcate = data['ground'];
+        print(gname);
+      });
+    });
   }
 
   @override
@@ -118,10 +134,10 @@ class _yeyakState extends State<yeyak> {
       appBar: AppBar(
         title: Text('예약하기'),
       ),
-      body: Container(
+      body: Center(
         child: Column(children: [
-          Text(gid),
-          Text(cate),
+          Text(gname),
+          Text(gcate),
           StreamBuilder(
               stream: firestore
                   .doc(cate)
@@ -155,7 +171,7 @@ class _yeyakState extends State<yeyak> {
                 }
                 _selectableDayPredicateDates;
                 if (month2.length == 0) {
-                  return Text('No data');
+                  return Text('선택가능한 일자가 없습니다');
                 }
                 return SfDateRangePicker(
                   minDate: DateTime.now().add(const Duration(days: -300)),

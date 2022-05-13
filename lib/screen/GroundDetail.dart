@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,20 +17,25 @@ class GroundDetail extends StatefulWidget {
 }
 
 class _GroundDetailState extends State<GroundDetail> {
-  List<dynamic> arg = Get.arguments;
-  String gid = Get.arguments[0];
-  String cate = Get.arguments[1];
+  final db = FirebaseFirestore.instance;
+  var arg = Get.arguments['info'];
+  String gid = '';
+  String cate = '';
   final User? currentUser = FirebaseAuth.instance.currentUser;
   String uid = '';
-  String name = '', address = '', addressDetail = '', age = '', master = '';
-
-
+  String name = '', address = '', addressDetail = '', age = '', master = '',phone = '';
+  String ground = '';
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    setState(() {
+      gid = arg.id;
+      cate = Get.arguments['cate'];
+    });
     account();
+    init();
   }
 
   void account() {
@@ -40,8 +46,49 @@ class _GroundDetailState extends State<GroundDetail> {
     }
   }
 
-  void init() {
+  void init() async {
+    await db
+        .collection('category')
+        .doc(cate)
+        .collection('ground')
+        .doc(gid)
+        .get()
+        .then((value) {
+      var data = value.data();
+      setState(() {
+        name = data!['name'];
+        address = data['address'];
+        addressDetail = data['addressDetail'];
+        age = data['age'];
+        phone = data['phone'];
+        ground = data['ground'];
+      });
+    });
+  }
 
+  Row rowForm(String t, String cont) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 100,
+          child: Text(
+            t,
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            cont,
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        )
+      ],
+    );
   }
 
   @override
@@ -73,12 +120,15 @@ class _GroundDetailState extends State<GroundDetail> {
         padding: EdgeInsets.all(8),
         child: Column(
           children: [
-            Text('이름:$gid'),
-            Text('inout:$cate'),
+            rowForm('이름', name),
+            rowForm('주소', '$address $addressDetail'),
+            rowForm('적정연령', age),
+            rowForm('전화번호', phone),
+            rowForm('카테고리', ground),
+            Text(cate),
             Text(uid),
             ElevatedButton(
               onPressed: () {
-                print(currentUser);
                 if (currentUser == null) {
                   Get.dialog(AlertDialog(
                     title: Text('login'),
@@ -107,7 +157,7 @@ class _GroundDetailState extends State<GroundDetail> {
               onPressed: () {
                 Get.to(dateAdd(), arguments: [gid, cate]);
               },
-              child: Text('++'),
+              child: Text('예약 추가'),
             ),
           ],
         ),

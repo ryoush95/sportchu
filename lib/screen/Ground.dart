@@ -48,10 +48,10 @@ class _groundState extends State<ground> {
                             GestureDetector(
                           onTap: () {
                             setState(() {
-                              Get.to(GroundDetail(), arguments: [
-                                c.list[index]['name'],
-                                c.list[index].id
-                              ]);
+                              Get.to(GroundDetail(), arguments: {
+                                'cate' : c.docs,
+                                'info' : c.list[index]
+                              });
                             });
                           },
                           child: Container(
